@@ -12,6 +12,11 @@
 <body>
     <div id="app">
         <h1>{{ title }}</h1>
+
+        <div class="message" v-if="message">
+            <p>{{ message }}</p>
+        </div>
+
         <!-- new note -->
         <div class="new-note">
             <input v-model="note.title" type="text">
@@ -37,6 +42,7 @@
             el: '#app',
             data: {
                 title: 'Notes App',
+                message: null,
                 note: {
                     title: '',
                     descr: ''
@@ -57,16 +63,15 @@
             },
             methods: {
                 addNote() {
-                    // console.log(this.note);
-                    // this.notes.push({
-                    //     title: this.note.title,
-                    //     descr: this.note.descr,
-                    //     date: new Date(Date.now()).toLocaleString()
-                    // })
                     let {
                         title,
                         descr
                     } = this.note
+
+                    if (title === '') {
+                        this.message = 'Title can\'t be blank!'
+                        return false
+                    }
 
                     this.notes.push({
                         // title: title,
@@ -75,6 +80,10 @@
                         descr,
                         date: new Date(Date.now()).toLocaleString()
                     })
+
+                    this.note.title = ''
+                    this.note.descr = ''
+                    this.message = null
                 }
             },
         })
