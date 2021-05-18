@@ -29,4 +29,9 @@ export default {
 </script>
 
 <style>
+@font-face {
+  font-family: "Montserrat";
+  src: local("Montserrat"),
+   url(/assets/fonts/Montserrat/Montserrat-Regular.ttf) format("truetype");
+}
 </style>
