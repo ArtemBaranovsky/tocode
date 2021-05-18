@@ -9,9 +9,7 @@
         <div class="container">
             <h1>{{ title }}</h1>
 
-            <div class="message" v-if="message">
-                <p>{{ message }}</p>
-            </div>
+            <message  v-if="message" :message="message" />
 
             <!-- new note -->
             <div class="new-note">
@@ -42,10 +40,13 @@
 </template>
 
 <script>
-
+import Message from './components/Message'
+import message from '@/components/Message.vue'
 export default {
   name: 'App',
   components: {
+    Message,
+    message
   },
   data() {
     return {
