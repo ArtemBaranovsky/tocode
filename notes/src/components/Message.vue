@@ -6,26 +6,26 @@
 </template>
 
 <script>
-    export default {
-      created () {
-      },
-        name: '',
-        props: {
-            message: {
-                type: String,
-                required: true,
-                // default: 'default message'
-            }
-        },
-        data() {
-            return {
-                
-            }
+export default {
+  created () {
+  },
+    name: 'Message',
+    props: {
+        message: {
+            type: String,
+            required: true,
+            // default: 'default message'
+        }
+    },
+    data() {
+        return {
+
         }
     }
+}
 </script>
 
-<style>
+<style lang="scss">
     p {
         color: red;
     }

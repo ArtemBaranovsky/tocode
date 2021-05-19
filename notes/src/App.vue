@@ -12,11 +12,15 @@
             <message  v-if="message" :message="message" />
 
             <!-- new note -->
-            <div class="new-note">
-                <input v-model="note.title" type="text">
-                <textarea v-model="note.descr" rows="" cols=""></textarea>
-                <button @click="addNote">New note</button>
-            </div>
+            <new-note
+                :note="note"
+                @addNote="addNote"
+            />
+<!--            <div class="new-note">-->
+<!--                <input v-model="note.title" type="text">-->
+<!--                <textarea v-model="note.descr" rows="" cols=""></textarea>-->
+<!--                <button @click="addNote">New note</button>-->
+<!--            </div>-->
 
             <!-- notes list -->
             <div class="notes" v-for="(note, index) in notes" :key="index">
@@ -40,13 +44,15 @@
 </template>
 
 <script>
-import Message from './components/Message'
-import message from '@/components/Message.vue'
+import message from './components/Message'
+// import message from '@/components/Message.vue'
+import newNote from "./components/NewNote";
 export default {
   name: 'App',
   components: {
-    Message,
-    message
+    // Message,
+    message,
+    newNote
   },
   data() {
     return {
