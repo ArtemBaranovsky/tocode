@@ -15,8 +15,18 @@
                 @addNote="addNote"
             />
 
-            <div class="note-header">
+            <div class="note-header" style="margin: 36px 0;">
                 <h1>{{ title }}</h1>
+
+                <!-- search-->
+                <p>{{ search }}</p>
+                <search
+                    :value="search"
+                    @search="search = $event"
+                    placeholder="Find your note"
+                />
+
+                <!-- icons control-->
                 <div class="icons">
 <!--                    <img :class="{ active: grid }" src="./assets/grid.svg" alt="">-->
 <!--                    <img :class="{ active: ! grid }" src="./assets/column.svg" alt="">-->
@@ -41,12 +51,11 @@
 
             <!-- notes list -->
             <notes
-                :notes="notes"
+                :notes="notesFilter"
                 :grid="grid"
                 @remove="removeNote"
             />
         </div>
-
       </section>
     </div>
 
@@ -56,21 +65,26 @@
 </template>
 
 <script>
-import message from './components/Message'
 // import message from '@/components/Message.vue'
-import newNote from "./components/NewNote"
+import message from './components/Message'
+import newNote from './components/NewNote'
 import notes from './components/Notes'
+import search from './components/Search'
+
 export default {
   name: 'App',
   components: {
     message,
     newNote,
-    notes
+    notes,
+    search
   },
   data() {
     return {
       title: 'Notes App',
       message: null,
+      search: '',
+      grid: true,
       note: {
           title: '',
           descr: ''
@@ -91,8 +105,24 @@ export default {
           descr: 'Description for third note',
           date: new Date(Date.now()).toLocaleString()
         }
-      ],
-      grid: false
+      ]
+    }
+  },
+  computed: {
+  	notesFilter () {
+      let array = this.notes,
+        search = this.search
+
+      if (!search) return array
+
+      search = search.trim().toLowerCase()
+      array = array.filter(function (item) {
+           if (item.title.toLowerCase().indexOf(search) !== -1) {
+              return item
+          }
+      })
+
+      return array
     }
   },
   methods: {
