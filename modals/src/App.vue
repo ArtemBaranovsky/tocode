@@ -30,7 +30,6 @@
               @close="modalSecond.show = false"
           >
             <div slot="body">
-<!--              <p>Test text.</p>-->
               <form @submit.prevent="submitSecondForm" action="">
                 <label>Name:</label>
                 <input type="text" required v-model="modalSecond.name">
@@ -41,6 +40,10 @@
             </div>
           </modals>
 
+            <!-- modal with validate -->
+            <button class="btn btnPrimary" @click="modalValidate = ! modalValidate">Show modal with validation</button>
+            <modalValidate v-show="modalValidate" @close="modalValidate = false" />
+
         </div>
       </section>
 
@@ -49,12 +52,13 @@
 </template>
 
 <script>
-import modals from '@/components/Modal'
+import modals from '@/components/UI/Modal'
+import modalValidate from '@/components/ModalValidate'
 
 export default {
   name: 'App',
   components: {
-    modals
+    modals, modalValidate
   },
   data() {
     return {
@@ -64,6 +68,7 @@ export default {
         name: '',
         email: ''
       },
+      modalValidate: false
     }
   },
   methods: {
