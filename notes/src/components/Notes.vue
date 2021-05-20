@@ -1,7 +1,7 @@
 <template>
     <!-- notes list -->
     <div class="notes">
-        <div class="note" :class="{ full: ! grid }" v-for="(note, index) in notes" :key="index">
+        <div class="note" v-for="(note, index) in notes" :class="classObject(note)" :key="index">
             <div class="note-header" :class="{ full: ! grid }">
                 <p>{{ note.title }}</p>
                 <p style="cursor: pointer;" @click="removeNote(index)">x</p>
@@ -32,6 +32,23 @@ export default {
   	removeNote (index) {
       console.log(`Note id - ${index} removed`)
       this.$emit('remove', index)
+    },
+    noteColor (priority) {
+        let colors = {
+          'simple' : 'green',
+          'important' : 'yellow',
+          'very important' : 'red'
+        }
+
+        return colors[priority]
+    },
+    classObject(note) {
+        return {
+            full: ! this.grid,
+            'text-primary' : this.noteColor(note.priority) === 'green',
+            'text-warning' : this.noteColor(note.priority) === 'yellow',
+            'text-danger' : this.noteColor(note.priority) === 'red',
+        }
     }
   }
 }
@@ -60,6 +77,15 @@ export default {
     &.full {
       width: 100%;
       text-align: center;
+    }
+    &.text-primary {
+        background-color: #3dff5c;
+    }
+    &.text-warning {
+        background-color: #fffd14;
+    }
+    &.text-danger {
+        background-color: #ff22da;
     }
   }
   .note-header {

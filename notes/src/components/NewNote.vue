@@ -1,6 +1,18 @@
 <template>
     <!-- new note -->
     <div class="new-note">
+        <label>Priority</label>
+        <select name="priority" v-model="selected">
+            <option disabled value="">Выберите срочность</option>
+            <option
+                v-for="(priority, index) in priorities.values"
+                v-bind:value="priority"
+                :key="index"
+            >
+                {{ priority }}
+            </option>
+        </select>
+
         <label>Title</label>
         <input v-model="note.title" type="text">
         <label>Description</label>
@@ -16,13 +28,26 @@ export default {
         note: {
             type: Object,
             request: true
-        }
+        },
+    },
+	data() {
+		return {
+          selected: '',
+          priorities: {
+              values: ['simple', 'important', 'very important'],
+              type: Array,
+          },
+		}
     },
     methods: {
     	addNote() {
+            this.note.priority = this.selected
     		this.$emit('addNote', this.note)
         }
-    }
+    },
+  mounted() {
+		console.log(this.priorities)
+	}
 }
 </script>
 
