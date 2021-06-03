@@ -45,7 +45,7 @@
                 <div class="form-item" :class="{ errorInput: $v.passwordConfirm.$error }">
                     <label>Password Confirmation:</label>
                     <p class="errorText" v-if="!$v.passwordConfirm.required">Password is required!</p>
-                    <p class="errorText" v-if="!$v.passwordConfirm.required">Password must have at least {{ $v.password.$params.minLength.min }} symbols</p>
+                    <p class="errorText" v-if="!$v.passwordConfirm.minLength">Password must have at least {{ $v.password.$params.minLength.min }} symbols</p>
                     <p class="errorText" v-if="!$v.passwordConfirm.sameAsPassword">Passwords must be identical!</p>
                     <input
                             v-model="passwordConfirm"
