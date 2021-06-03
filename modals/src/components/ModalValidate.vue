@@ -29,6 +29,31 @@
                     >
                 </div>
 
+                <!--password-->
+                <div class="form-item" :class="{ errorInput: $v.password.$error }">
+                    <label>Password:</label>
+                    <p class="errorText" v-if="!$v.password.required">Password is required!</p>
+                    <p class="errorText" v-if="!$v.passwordConfirm.required">Password must have at least {{ $v.password.$params.minLength.min }} symbols</p>
+                    <input
+                            v-model="password"
+                            :class="{ error: $v.password.error }"
+                            @change="$v.password.$touch()"
+                    >
+                </div>
+
+                <!--password-confirm-->
+                <div class="form-item" :class="{ errorInput: $v.passwordConfirm.$error }">
+                    <label>Password Confirmation:</label>
+                    <p class="errorText" v-if="!$v.passwordConfirm.required">Password is required!</p>
+                    <p class="errorText" v-if="!$v.passwordConfirm.required">Password must have at least {{ $v.password.$params.minLength.min }} symbols</p>
+                    <p class="errorText" v-if="!$v.passwordConfirm.sameAsPassword">Passwords must be identical!</p>
+                    <input
+                            v-model="passwordConfirm"
+                            :class="{ error: $v.passwordConfirm.error }"
+                            @change="$v.passwordConfirm.$touch()"
+                    >
+                </div>
+
                 <!--button-->
                 <button class="btn btnPrimary">Submit!</button>
             </form>
@@ -37,7 +62,7 @@
 </template>
 
 <script>
-import { required, minLength, email } from 'vuelidate/lib/validators'
+import { required, minLength, email, sameAs } from 'vuelidate/lib/validators'
 
 import modal from '@/components/UI/Modal'
 
@@ -49,7 +74,9 @@ export default {
   data() {
   	return {
       name: '',
-      email: ''
+      email: '',
+      password: '',
+      passwordConfirm: ''
     }
   },
   methods: {
@@ -59,13 +86,17 @@ export default {
       if (! this.$v.$invalid) {
       	const user = {
           name: this.name,
-          email: this.email
+          email: this.email,
+          password: this.password,
+          passwordConfirm: this.passwordConfirm,
         }
         console.log(user);
 
       	// DONE
       	this.name = ''
       	this.email = ''
+      	this.password = ''
+      	this.passwordConfirm = ''
         this.$v.$reset()
         this.$emit('close')
       }
@@ -79,6 +110,14 @@ export default {
     email: {
     	required,
         email
+    },
+    password: {
+    	required,
+        minLength: minLength(6)
+    },
+    passwordConfirm: {
+    	required,
+        sameAsPassword: sameAs('password')
     }
   }
 }
