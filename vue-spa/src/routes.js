@@ -6,6 +6,7 @@ Vue.use(Router)
 
 // pages
 import Home from '@/pages/Home'
+import NotFound from '@/pages/404'
 import Example from '@/pages/Example'
 
 // Routing
@@ -20,6 +21,11 @@ export default new Router({
 			path: '/example',
 			name: 'example',
 			component: Example
+		},
+		{
+			path: '*',
+			name: 'notFound',
+			component: NotFound
 		}
 	]
 })
