@@ -35,3 +35,11 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+  .navbar-link {
+    &.router-link-exact-active {
+      color: rgb(82, 71, 231);
+    }
+  }
+</style>
