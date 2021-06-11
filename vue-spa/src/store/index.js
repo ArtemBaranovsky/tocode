@@ -8,14 +8,15 @@ export default new Vuex.Store({
 		message: 'Hello Vuex'
 	},
 	mutations: {
-		setMessage (state/*, payload*/) {
-			state.message = 'hello again'
+		setMessage (state, message) {
+			// state.message = 'hello again'
 			// state.message = payload
+			state.message = message
 		}
 	},
 	actions: {
-		setMessage({commit/*, getters*/}) {
-			commit('setMessage')
+		setMessage({commit /*, getters*/}, payload) {
+			commit('setMessage', payload)
 			// let mes = API
 			// commit('setMessage', mes)
 		}
