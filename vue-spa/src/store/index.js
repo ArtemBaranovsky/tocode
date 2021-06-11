@@ -3,27 +3,19 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
+import example from './example'
+// import users from './users'
+// import auth from './auth'
+
 export default new Vuex.Store({
-	state: {
-		message: 'Hello Vuex'
+	modules: {
+		example,
+		// users,
+		// auth
 	},
 	mutations: {
-		setMessage (state, message) {
-			// state.message = 'hello again'
-			// state.message = payload
-			state.message = message
+		getPosts () {
+
 		}
-	},
-	actions: {
-		setMessage({commit /*, getters*/}, payload) {
-			commit('setMessage', payload)
-			// let mes = API
-			// commit('setMessage', mes)
-		}
-	},
-	getters: {
-		getMessage (state) {
-			return state.message
-		}
-	},
+	}
 })
