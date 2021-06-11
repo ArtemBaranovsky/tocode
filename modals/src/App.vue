@@ -2,6 +2,15 @@
   <div class="wrapper">
     <div class="wrapper-content">
 
+      <header>
+        <div style="display: flex;  flex-direction: column;  margin: 0 auto;">
+          <ul style="display: inline-flex; margin: 0 0 0 auto;">
+            <li><a href="#" @click="modalLogin">Login</a></li>
+            <li><a href="#" @click="modalRegister">Register</a></li>
+          </ul>
+        </div>
+      </header>
+
       <section>
         <div class="container">
           <button class="btn btnPrimary" @click="modalFirst = ! modalFirst">Show first modal</button>
@@ -68,7 +77,9 @@ export default {
         name: '',
         email: ''
       },
-      modalValidate: false
+      modalValidate: false,
+      modalLogin: false,
+      modalRegister: false,
     }
   },
   methods: {
@@ -84,3 +95,8 @@ export default {
   }
 }
 </script>
+<style>
+  header li {
+    margin-right: 40px;
+  }
+</style>
