@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-import shop from '@/pages/Shop.vue'
+import shop from './shop'
 // import users from './users'
 // import auth from './auth'
 
