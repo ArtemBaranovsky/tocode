@@ -2,7 +2,9 @@
     <div class="wrapper-content wrapper-content--fixed">
         <section>
             <div class="container">
-                <h1>Product: {{ id }}</h1>
+                <img :src="product.img" :alt="product.title">
+                <h1>Product: {{ product.title }}</h1>
+                <p>{{ product.descr }}</p>
             </div>
         </section>
     </div>
@@ -13,11 +15,15 @@ export default {
     name: "ShopItem",
     data() {
     	return {
-    		id: this.$route.params.id
+    		id: this.$route.params.id,
+            product: null
         }
     },
     created() {
-        // console.log({ route: this.$route, id: this.$route.params.id })
+    	let id = this.$route.params.id
+    	this.product = this.$store.getters.getProduct(id)
+        console.log(this.product);
+			// console.log({ route: this.$route, id: this.$route.params.id })
     }
 }
 </script>
