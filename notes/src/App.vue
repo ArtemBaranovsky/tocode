@@ -89,32 +89,14 @@ export default {
           title: '',
           descr: ''
       },
-      notes: [
-      	{
-          title: 'First Note',
-          descr: 'Description for first note',
-          date: new Date(Date.now()).toLocaleString(),
-          priority: 'important'
-        },
-        {
-          title: 'Second Note',
-          descr: 'Description for second note',
-          date: new Date(Date.now()).toLocaleString(),
-          priority: 'very important'
-        },
-        {
-          title: 'Third Note',
-          descr: 'Description for third note',
-          date: new Date(Date.now()).toLocaleString(),
-          priority: 'simple'
-        }
-      ]
+      notes: []
     }
   },
   computed: {
   	notesFilter () {
-      let array = this.notes,
+      let array = this.$store.getters.getNotes,
         search = this.search
+			// let array = this.notes,
 
       if (!search) return array
 
@@ -137,11 +119,11 @@ export default {
               return false
           }
 
-          this.notes.push({
-              title,
-              descr,
-              date: new Date(Date.now()).toLocaleString(),
-              priority
+          this.$store.dispatch('addNote',{
+						title,
+						descr,
+						date: new Date(Date.now()).toLocaleString(),
+						priority
           })
 
           this.note.title = ''

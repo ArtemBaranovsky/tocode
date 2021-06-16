@@ -32,6 +32,7 @@ export default {
   	removeNote (index) {
       console.log(`Note id - ${index} removed`)
       this.$emit('remove', index)
+      // TODO
     },
     noteColor (priority) {
         let colors = {

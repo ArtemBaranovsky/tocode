@@ -43,6 +43,7 @@ export default {
     	addNote() {
             this.note.priority = this.selected
     		this.$emit('addNote', this.note)
+            // TODO
         }
     },
   mounted() {
