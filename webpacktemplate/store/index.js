@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 import example from './exapmle'
 
-export default new Vuex.$store({
+export default new Vuex.Store({
   modules: {
     example
   }

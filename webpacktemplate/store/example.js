@@ -1,8 +1,12 @@
 export default {
-  store: {
+  state: {
     message: 'hello vuex'
   },
   mutations: {},
   actions: {},
-  getters: {}
+  getters: {
+    getMessage (state) {
+	    return state.message
+    }
+  }
 }

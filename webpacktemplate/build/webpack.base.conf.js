@@ -16,12 +16,25 @@ module.exports = {
 	},
 
 	entry: {
-		app: PATHS.src
+		app: PATHS.src,
+		lk: `${PATHS.assets}js/lk.js`
 	},
 	output: {
-		filename: `${PATHS.assets}js/[name].js`,
+		filename: `${PATHS.assets}js/[name].[hash].js`,
 		path: PATHS.dist,
 		publicPath: '/'
+	},
+	optimization: {
+		splitChunks: {
+			cacheGroups: {
+				vendor: {
+					name: 'vendors',
+					test: /node_modules/,
+					chunks: 'all',
+					enforce: true
+				}
+			}
+		}
 	},
 	module: {
 		rules: [
@@ -112,7 +125,7 @@ module.exports = {
 			// Options similar to the same options in webpackOptions.output
 			// both options are optional
 			// filename: '[name].css',
-			filename: `${PATHS.assets}css/[name].css`,
+			filename: `${PATHS.assets}css/[name].[hash].css`,
 			chunkFilename: '[id].css',
 		}),
 		new HtmlWebpackPlugin({

@@ -24,8 +24,8 @@ Vue.component('example-component', require('./components/Example.vue').default)
 const app = new Vue({
   data() {
     return {
-	  component: false
-	}
+	    component: false
+	  }
   },
   store,
   el: '#app'
