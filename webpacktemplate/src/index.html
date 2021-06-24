@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<!--    <link rel="stylesheet" href="/dist/app.css">-->
+    <title>Webpack</title>
+</head>
+<body>
+
+    <!--main wrapper-->
+    <div class="wrapper">
+        <div id="app">
+            <header></header>
+
+            <div class="content-wrapper">
+                <!-- example section (remove me) -->
+                <section id="main" style="text-align:center;">
+                    <div class="wrapper-example">
+                        <div class="container">
+                            <h1>Webpack</h1>
+                            <img src="/assets/img/dog.jpg" alt="funny dog">
+							<button @click="component = !component">Show component</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- example section 2 (remove me) -->
+                <section style="text-align:center;">
+                    <div class="wrapper-example--second">
+                        <div class="container">
+                            <h1>Example second section</h1>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- example vue component -->
+                <example-component v-if="component" />
+            </div>
+
+            <footer></footer>
+        </div>
+        <!-- end #app wrapper -->
+    </div>
+    <!-- end main wrapper -->
+
+<!--    <script src="/dist/app.js"></script>-->
+</body>
+</html>
