@@ -153,6 +153,7 @@ module.exports = {
         // Fonts:
         {
           from: `${PATHS.src}/${PATHS.assets}fonts`,
+          // from: `${PATHS.src}/fonts`,
           to: `${PATHS.assets}fonts`
         },
         // Static (copy to '/'):
@@ -167,7 +168,7 @@ module.exports = {
 	  filename: './index.html',
 	  inject: false,
 	  title: 'Webpack Template'
-    })
+  })
     /*
       Automatic creation any html pages (Don't forget to RERUN dev server!)
       See more:
