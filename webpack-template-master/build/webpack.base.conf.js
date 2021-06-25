@@ -162,9 +162,9 @@ module.exports = {
         }
       ]
     }),
-	new HtmlWebpackPlugin({ 
-	  template: `${PATHS.src}/index.html`, 
-	  filename: './index.html', 
+	new HtmlWebpackPlugin({
+	  template: `${PATHS.src}/index.html`,
+	  filename: './index.html',
 	  inject: false,
 	  title: 'Webpack Template'
     })

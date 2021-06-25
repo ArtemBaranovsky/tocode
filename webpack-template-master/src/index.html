@@ -33,5 +33,8 @@
       <!-- end #app wrapper -->
     </div>
     <!-- end main wrapper -->
+	<% for (var js in htmlWebpackPlugin.files.js) { %>
+      <script src="<%= htmlWebpackPlugin.files.js[js] %>"></script>
+    <% } %>
   </body>
 </html>
