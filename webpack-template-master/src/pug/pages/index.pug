@@ -1,0 +1,27 @@
+extends ../layout/main
+
+block variables
+  - var title = 'Webpack + Pug';
+  - var description = 'Description for Webpack + Pug';
+  - var content = 'Content for Webpack + Pug';
+  - var pageClass = 'index-page';
+
+block content
+  section
+    .container
+      +item('Item title', 'Item description')
+      +item('Item title', 'Item description')
+      +item('Item title', 'Item description')
+      //.item
+      //  h2 Jade - node template engine
+      //  p Hello pug
+
+  example-component
+
+block script
+  script(type='text/javascript').
+    const foo = true;
+    let bar = function () {};
+    if (foo) {
+      bar(1 + 5)
+    }
