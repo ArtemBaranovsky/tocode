@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Webpack Template</title>
+
+    <% for (var css in htmlWebpackPlugin.files.css) { %>
+    <link href="<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet">
+    <% } %>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div id="app">
+        <header></header>
+
+        <div class="content-wrapper">
+          <!-- example section (remove me) -->
+          <section id="promo" style="text-align:center;">
+            <div class="container">
+              <h1><%= htmlWebpackPlugin.options.title || 'Webpack App' %></h1>
+<!--              <img src="/assets/img/logo.png" alt="">-->
+<!--              <img src="/assets/img/dog.jpg" alt="">-->
+              <button @click="component = !component">Toggle Vue Example Component</button>
+            </div>
+          </section>
+
+          <!-- example vue component -->
+<!--          <example-component v-if="component" />-->
+
+          <!-- modal with validate -->
+          <div>
+            <button class="btn btnPrimary" @click="modalView = !modalView">Show modal with form + validate</button>
+            <modal-component v-show="modalView" @close="modalView = false"/>
+          </div>
+
+        </div>
+
+        <footer></footer>
+      </div>
+      <!-- end #app wrapper -->
+    </div>
+    <!-- end main wrapper -->
+	<% for (var js in htmlWebpackPlugin.files.js) { %>
+      <script src="<%= htmlWebpackPlugin.files.js[js] %>"></script>
+    <% } %>
+  </body>
+</html>
