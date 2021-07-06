@@ -17,11 +17,12 @@ const PATHS = {
 
 // Pages const for HtmlWebpackPlugin
 // see more: https://github.com/vedees/webpack-template/blob/master/README.md#html-dir-folder
-// const PAGES_DIR = PATHS.src
+const PAGES_DIR = PATHS.src
 const PAGES_DIR = `${PATHS.src}/pug/pages/`
 const PAGES = fs
   .readdirSync(PAGES_DIR)
-  .filter(fileName => fileName.endsWith('.pug'))
+  // .filter(fileName => fileName.endsWith('.pug'))
+  .filter(fileName => fileName.endsWith('.html'))
 
 module.exports = {
   externals: {
@@ -55,11 +56,11 @@ module.exports = {
   },
   module: {
     rules: [
-      {
-        // Pug templates
-        test: /\.pug$/,
-        loader: 'pug-loader'
-      },
+      // {
+      //   // Pug templates
+      //   test: /\.pug$/,
+      //   loader: 'pug-loader'
+      // },
       {
         // JavaScript
         test: /\.js$/,
@@ -169,12 +170,13 @@ module.exports = {
         }
       ]
     }),
-/*	new HtmlWebpackPlugin({
-	  template: `${PATHS.src}/html/index.html`,
+	new HtmlWebpackPlugin({
+	  // template: `${PATHS.src}/html/index.html`,
+	  template: `${PATHS.src}/index.html`,
 	  filename: './index.html',
 	  inject: false,
 	  title: 'Webpack Template'
-  })*/
+  })
     /*
       Automatic creation any html pages (Don't forget to RERUN dev server!)
       See more:
@@ -182,12 +184,12 @@ module.exports = {
       Best way to create pages:
       https://github.com/vedees/webpack-template/blob/master/README.md#third-method-best
     */
-     ...PAGES.map(
+/*     ...PAGES.map(
       page =>
         new HtmlWebpackPlugin({
           template: `${PAGES_DIR}/${page}`,                                   // .pug
           filename: `./${page.replace(/\.pug/,'.html')}`  // .html
         })
-    )
+    )*/
   ]
 }
