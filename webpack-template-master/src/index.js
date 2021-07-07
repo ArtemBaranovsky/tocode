@@ -25,6 +25,7 @@ Vue.component('example-component', require('./components/Example.vue').default)
 Vue.component('modal-component', require('./components/Modal.vue').default)
 
 // UI
+Vue.component('notify-component', require('./components/UI/Notify.vue').default)
 
 // controls
 Vue.component('login-button', require('./components/UI/controls/buttons/Login.vue').default)

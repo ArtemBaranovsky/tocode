@@ -1,101 +1,100 @@
 <template>
-  <modal
-    title="Modal with form + Validate"
-    @close="$emit('close')">
-    <!-- body -->
-    <div slot="body">
-      <form @submit.prevent="onSubmit">
-
-        <!-- name -->
-        <div class="form-item" :class="{ errorInput: $v.name.$error }">
-          <label>Name:</label>
-          <p class="errorText" v-if="!$v.name.required"> Filed is required! </p>
-          <p class="errorText" v-if="!$v.name.minLength"> Name must have at least {{ $v.name.$params.minLength.min }} !</p>
-          <input
-            v-model="name"
-            :class="{ error: $v.name.$error }"
-            @change="$v.name.$touch()">
+  <transition name="modal">
+    <div class="modal__wrapper" @click="$emit('close')">
+      <div class="modal-content" @click.stop="">
+        <div class="modal-header">
+          <span class="modal-title"> {{ title }} </span>
+          <span class="button-close" @click="$emit('close')">×</span>
         </div>
-
-        <!-- email -->
-        <div class="form-item" :class="{ errorInput: $v.email.$error }">
-          <label>Email:</label>
-          <p class="errorText" v-if="!$v.email.required"> Filed is required! </p>
-          <p class="errorText" v-if="!$v.email.email"> Email is not correct!</p>
-          <input
-            v-model="email"
-            :class="{ error: $v.email.$error }"
-            @change="$v.email.$touch()">
+        <div class="modal-body">
+          <slot name="body">default body</slot>
         </div>
-        <!-- button -->
-        <button class="btn btnPrimary">Submit!</button>
-      </form>
+      </div>
     </div>
-  </modal>
+  </transition>
 </template>
 
 <script>
-import { required, minLength, email } from 'vuelidate/lib/validators'
-
-import modal from '~/components/UI/Modal.vue'
-
 export default {
-  components: { modal },
+  props: {
+    title: {
+      type: String,
+      required: true,
+      default: 'Default title'
+    }
+  },
   data () {
-    return {
-      name: '',
-      email: ''
-    }
+    return {}
   },
-  validations: {
-    name: {
-      required,
-      minLength: minLength(4)
-    },
-    email: {
-      required,
-      email
-    }
-  },
-  created () {
-    let view = this.$store.getters.getModalView
-    console.log(view)
-  },
-  methods: {
-    onSubmit () {
-      this.$v.$touch()
-      if (!this.$v.$invalid) {
-        const user = {
-          name: this.name,
-          email: this.email
-        }
-        console.log(user)
-
-        // DONE!
-        this.name = ''
-        this.email = ''
-        this.$v.$reset()
+  mounted () {
+    document.body.addEventListener('keyup', e => {
+      if (e.keyCode === 27) {
         this.$emit('close')
       }
-    },
-  }
+    })
+  },
+  computed: {},
+  methods: {}
 }
 </script>
 
-<style lang="scss">
-.form-item .errorText {
-  display: none;
-  margin-bottom: 8px;
-  font-size: 13.4px;
-  color: #de4040;
+<style lang="scss" scoped>
+// Animation
+.modal-enter {
+  opacity: 0
 }
-.form-item {
-  &.errorInput .errorText {
-    display: block;
+.modal-leave-active {
+  opacity: 0
+}
+.modal-enter .modal-content,
+.modal-leave-active .modal-content {
+  transform: scale(1.2)
+}
+
+.modal__wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  transition: opacity .2s ease;
+  right: 0;
+  z-index: 998;
+  background-color: rgba(00,00,00,.48);
+}
+
+.modal-content {
+  position: relative;
+  max-width: 600px;
+  padding: 20px 18px;
+  background-color: #fff;
+  border: 1px solid #dcdfe6;
+  transition: all .2s ease;
+  border-radius: 8px;
+  z-index: 999;
+  overflow: hidden;
+  @media screen and (min-width: 900px) {
+    min-width: 500px;
   }
 }
-input.error {
-  border-color: #de4040;
+.modal-header {
+  display: flex;
+  align-self: center;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  span {
+    font-size: 24px;
+  }
+  .button-close {
+    cursor: pointer;
+  }
 }
+.modal-body {
+  text-align: center;
+}
+
+
 
 </style>

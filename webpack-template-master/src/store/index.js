@@ -6,11 +6,11 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   // module: {},
   state: {
-    modalView: 'Login',
+    // modalView: 'login',
+    modalView: null,
   },
   mutations: {
     setModalView (state, view) {
-      console.log(view)
       state.modalView = view
     }
   },
