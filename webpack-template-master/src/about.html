@@ -23,19 +23,7 @@
         </div>
       </section>
 
-      <div>
-        <!-- example vue component -->
-        <!--This component is hidden for robots-->
-        <example-component />
-        <!--          <example-component v-if="component" />-->
 
-      </div>
-      <!-- modal with validate -->
-      <div>
-        <!--Bad practice to use Vue components directly in HTML! Or use Vue components in separate components. -->
-        <button class="btn btnPrimary" @click="modalView = !modalView">Show modal with form + validate</button>
-        <modal-component v-show="modalView" @close="modalView = false"/>
-      </div>
 
     </div>
 

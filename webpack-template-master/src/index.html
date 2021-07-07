@@ -22,19 +22,22 @@
               <h1><%= htmlWebpackPlugin.options.title || 'Webpack App' %></h1>
 <!--              <img src="/assets/img/logo.png" alt="">-->
 <!--              <img src="/assets/img/dog.jpg" alt="">-->
-              <button @click="component = !component">Toggle Vue Example Component</button>
+<!--              <button @click="component = !component">Toggle Vue Example Component</button>-->
             </div>
           </section>
 
-          <div>
+<!--          <div>-->
             <!-- example vue component -->
-            <example-component />
+<!--            <example-component />-->
             <!--          <example-component v-if="component" />-->
 
-          </div>
+<!--          </div>-->
+
           <!-- modal with validate -->
           <div>
-            <button class="btn btnPrimary" @click="modalView = !modalView">Show modal with form + validate</button>
+            <login-button />
+          </div>
+          <div>
             <modal-component v-show="modalView" @close="modalView = false"/>
           </div>
 
