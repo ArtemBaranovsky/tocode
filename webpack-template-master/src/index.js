@@ -10,14 +10,14 @@ import './assets/css/main.css'
 
 // Vue.js
 window.Vue = require('vue')
-
-import Vuelidate from 'vuelidate'
+// vuex
+import store from '../store'
 
 // Plugins
+import Vuelidate from 'vuelidate'
+
+
 Vue.use(Vuelidate)
-
-
-import store from '../store/index.js'
 
 // Vue components (for use in html)
 Vue.component('example-component', require('./components/Example.vue').default)

@@ -57,6 +57,10 @@ export default {
       email
     }
   },
+  created () {
+    let view = this.$store.getters.getModalView
+    console.log(view)
+  },
   methods: {
     onSubmit () {
       this.$v.$touch()
