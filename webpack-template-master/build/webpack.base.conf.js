@@ -184,12 +184,12 @@ module.exports = {
       Best way to create pages:
       https://github.com/vedees/webpack-template/blob/master/README.md#third-method-best
     */
-/*     ...PAGES.map(
-      page =>
-        new HtmlWebpackPlugin({
-          template: `${PAGES_DIR}/${page}`,                                   // .pug
-          filename: `./${page.replace(/\.pug/,'.html')}`  // .html
-        })
-    )*/
+    /*     ...PAGES.map(
+          page =>
+            new HtmlWebpackPlugin({
+              template: `${PAGES_DIR}/${page}`,                                   // .pug
+              filename: `./${page.replace(/\.pug/,'.html')}`  // .html
+            })
+        )*/
   ]
 }

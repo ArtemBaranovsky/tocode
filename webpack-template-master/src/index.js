@@ -20,7 +20,7 @@ Vue.use(Vuelidate)
 import store from '../store/index.js'
 
 // Vue components (for use in html)
-// Vue.component('example-component', require('./components/Example.vue').default)
+Vue.component('example-component', require('./components/Example.vue').default)
 Vue.component('modal-component', require('./components/Modal.vue').default)
 
 const app = new Vue({
