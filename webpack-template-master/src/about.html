@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Webpack Template</title>
+  <title>About Html</title>
 
   <% for (var css in htmlWebpackPlugin.files.css) { %>
   <link href="<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet">
@@ -19,19 +19,20 @@
       <!-- example section (remove me) -->
       <section id="promo" style="text-align:center;">
         <div class="container">
-          <h1><%= htmlWebpackPlugin.options.title || 'Webpack App' %></h1>
-          <!--              <img src="/assets/img/logo.png" alt="">-->
-          <!--              <img src="/assets/img/dog.jpg" alt="">-->
-          <button @click="component = !component">Toggle Vue Example Component</button>
+          <h1>About Html</h1>
         </div>
       </section>
 
-      <!-- example vue component -->
-      <!--          <example-component v-if="component" />-->
-                <example-component />
+      <div>
+        <!-- example vue component -->
+        <!--This component is hidden for robots-->
+        <example-component />
+        <!--          <example-component v-if="component" />-->
 
+      </div>
       <!-- modal with validate -->
       <div>
+        <!--Bad practice to use Vue components directly in HTML! Or use Vue components in separate components. -->
         <button class="btn btnPrimary" @click="modalView = !modalView">Show modal with form + validate</button>
         <modal-component v-show="modalView" @close="modalView = false"/>
       </div>
