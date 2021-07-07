@@ -24,6 +24,7 @@ Vue.component('example-component', require('./components/Example.vue').default)
 Vue.component('modal-component', require('./components/Modal.vue').default)
 
 const app = new Vue({
+  // Generally data section shouldn't be there
   data() {
     return {
       modalView: false,
