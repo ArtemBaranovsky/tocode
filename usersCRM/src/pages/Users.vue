@@ -34,10 +34,14 @@ export default {
   data () {
     return {
       users: [  // only for example
-        { id: 1, name: 'Jack', age: 22, gender: 'male' },
-        { id: 2, name: 'Alex', age: 23, gender: 'male' }
       ]
     }
+  },
+  created() {
+    this.users = [
+      { id: 1, name: 'Jack', age: 22, gender: 'male' },
+      { id: 2, name: 'Alex', age: 23, gender: 'male' }
+    ]
   }
 }
 </script>
