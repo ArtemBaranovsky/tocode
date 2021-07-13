@@ -1,5 +1,4 @@
 /webpacktemplate/dist/
 /webpacktemplate/node_modules/
-/webpacktemplate/node_modules/
-/webpacktemplate/dist/
-/webpacktemplate/dist/
+/.idea/modules.xml
+/.idea/vcs.xml
