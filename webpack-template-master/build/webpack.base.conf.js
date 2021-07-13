@@ -176,7 +176,7 @@ module.exports = {
 	  filename: './index.html',
 	  inject: false,
 	  title: 'Webpack Template'
-  }),
+  })
     /*
       Automatic creation any html pages (Don't forget to RERUN dev server!)
       See more:
@@ -188,8 +188,8 @@ module.exports = {
           page =>
             new HtmlWebpackPlugin({
               template: `${PAGES_DIR}/${page}`,                                   // .pug
-              filename: `./${page.replace(/\.pug/,'.html')}`  // .html
-              // filename: `./${page}`  // .html
+              // filename: `./${page.replace(/\.pug/,'.html')}`
+              filename: `./${page}` // .html
             })
         )*/
   ]

@@ -10,28 +10,20 @@ import './assets/css/main.css'
 
 // Vue.js
 window.Vue = require('vue')
-// vuex
-import store from './store'
+
+import Vuelidate from 'vuelidate'
 
 // Plugins
-import Vuelidate from 'vuelidate'
-import Vue from "vue";
-
-
 Vue.use(Vuelidate)
+
+
+import store from '../store/index.js'
 
 // Vue components (for use in html)
 Vue.component('example-component', require('./components/Example.vue').default)
 Vue.component('modal-component', require('./components/Modal.vue').default)
 
-// UI
-Vue.component('notify-component', require('./components/UI/Notify.vue').default)
-
-// controls
-Vue.component('login-button', require('./components/UI/controls/buttons/Login.vue').default)
-
 const app = new Vue({
-  // Generally data section shouldn't be there
   data() {
     return {
       modalView: false,
