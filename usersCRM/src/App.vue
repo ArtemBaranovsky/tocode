@@ -16,6 +16,8 @@
       </div>
     </header>
 
+<!--    <div class="error" v-if="error"></div>-->
+
     <router-view></router-view>
 
     <!-- <footer></footer> -->
@@ -32,7 +34,7 @@ export default {
         { title: 'Users', url: '/users' },
       ]
     }
-  }
+  },
 }
 </script>
 

@@ -16,7 +16,10 @@
 
           <tbody>
             <tr v-for="user in users" :key="user.id">
-              <td> {{ user.name }} </td>
+              <td>
+                <img :src="user.img" :alt="user.name">
+                <span>{{ user.name }}</span>
+              </td>
               <td> {{ user.age }} </td>
               <td> {{ user.gender }} </td>
             </tr>
@@ -30,6 +33,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   data () {
     return {
@@ -38,10 +43,30 @@ export default {
     }
   },
   created() {
-    this.users = [
-      { id: 1, name: 'Jack', age: 22, gender: 'male' },
-      { id: 2, name: 'Alex', age: 23, gender: 'male' }
-    ]
+    axios
+      .get('https://my-json-server.typicode.com/ArtemBaranovsky/users-api-server/users')
+      .then(response => {
+        this.users = response.data
+        // console.log(response.data);
+      })
+      .catch(error => {
+        this.$emit('error')
+        console.log(error);
+      })
+
+    // this.users = [
+    //   { id: 1, name: 'Jack', age: 22, gender: 'male' },
+    //   { id: 2, name: 'Alex', age: 23, gender: 'male' }
+    // ]
   }
 }
 </script>
+
+<style lang="scss">
+img {
+  width: 60px;
+  height: auto;
+  border-radius: 50%;
+  margin-right: 16px !important;
+}
+</style>
