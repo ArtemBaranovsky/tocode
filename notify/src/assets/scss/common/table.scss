@@ -2,7 +2,8 @@
 table {
   width: 100%;
   line-height: 1.5em;
-  border-collapse: separate;
+  //border-collapse: separate;
+  border-collapse: collapse;
   border-spacing: 0 34px;
   thead th {
     padding: 20px 22px;

@@ -3,9 +3,22 @@
     <section>
       <div class="container">
 
-        <notify
-          :messages="messages"/>
+        <!-- wrapper -->
+        <div class="notify__wrapper">
 
+          <!-- title -->
+          <div class="notify-title">
+            <p>Notify App</p>
+            <!-- svg -->
+          </div>
+
+          <!-- notify -->
+          <div class="notify__content">
+            <notify
+                :messages="messages"/>
+          </div>
+
+        </div>
       </div>
     </section>
   </div>
@@ -29,3 +42,34 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+}
+
+.notify__wrapper {
+  width: 400px;
+  background-color: #ffffff;
+  padding: 30px;
+  border-right: 16px;
+  box-shadow: 0 12px 22px 0 rgba(0,0,0,.1);
+}
+
+.notify__content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  min-height: 300px;
+}
+
+.notify-title {
+  p {
+    font-size: 24px;
+  }
+}
+
+</style>
