@@ -14,6 +14,10 @@ export default {
     messages: {
       type: Array,
       required: true
+    },
+    loading: {
+      type: Boolean,
+      required: true
     }
   }
 }

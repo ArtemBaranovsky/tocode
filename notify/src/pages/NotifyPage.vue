@@ -12,10 +12,14 @@
             <!-- svg -->
           </div>
 
+          <!-- preloader -->
+          <preloader v-if="loading" :width="90" :height="90"/>
+
           <!-- notify -->
           <div class="notify__content">
             <notify
-                :messages="messages"/>
+              v-if="!loading"
+              :messages="messages"/>
           </div>
 
         </div>
@@ -26,10 +30,13 @@
 
 <script>
 import notify from '@/components/Notify.vue'
+
+import preloader from '@/components/UI/Preloader.vue'
 export default {
-  components: { notify },
+  components: { notify, preloader },
   data () {
     return {
+      loading: false,
       messages: [
         { title: 'message 1' },
         { title: 'message 2' },
