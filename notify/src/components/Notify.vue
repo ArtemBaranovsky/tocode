@@ -15,10 +15,10 @@ export default {
       type: Array,
       required: true
     },
-    loading: {
-      type: Boolean,
-      required: true
-    }
+    // loading: {
+    //   type: Boolean,
+    //   required: true
+    // }
   }
 }
 </script>
