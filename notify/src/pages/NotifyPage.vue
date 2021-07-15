@@ -10,7 +10,7 @@
           <div class="notify-title">
             <p>Notify App</p>
             <!-- svg -->
-            <img src="@/assets/reload.svg" alt="reload">
+            <img @click="getNotifyLazy" src="@/assets/reload.svg" alt="reload">
           </div>
 
           <!-- preloader -->
@@ -38,19 +38,16 @@ export default {
   components: { notify, preloader },
   data () {
     return {
-      loading: false,
-      messages: [
-        // { title: 'message 1' },
-        // { title: 'message 2' },
-        // { title: 'message 3' },
-        // { title: 'message 4' },
-        // { title: 'message 5' },
-        // { title: 'message 6' },
-      ]
+      loading: false
     }
   },
   mounted() {
     this.getNotify()
+  },
+  computed: {
+    messages () {
+      return this.$store.getters.getMessage
+    }
   },
   methods: {
     getNotifyLazy() {
@@ -65,7 +62,8 @@ export default {
         // .get("https://tocode.ru/static/c/vue-pro/notifyApi.php")
         .get("https://tocode.ru/static/_secret/courses/1/notifyApi.php")
         .then(response => {
-          this.messages = response.data.notify
+          // this.messages = response.data.notify
+          this.$store.dispatch('setMessage', response.data.notify)
         })
         .catch(error => {
           console.log(error);
@@ -100,6 +98,9 @@ export default {
 }
 
 .notify-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   p {
     font-size: 24px;
   }
