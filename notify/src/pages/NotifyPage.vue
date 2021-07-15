@@ -46,7 +46,7 @@ export default {
   },
   computed: {
     messages () {
-      return this.$store.getters.getMessage
+      return this.$store.getters.getMessageMain
     }
   },
   methods: {
@@ -63,7 +63,18 @@ export default {
         .get("https://tocode.ru/static/_secret/courses/1/notifyApi.php")
         .then(response => {
           // this.messages = response.data.notify
-          this.$store.dispatch('setMessage', response.data.notify)
+          let res = response.data.notify,
+              messages = [],
+              messagesMain = [];
+
+          // filter
+          for (let i = 0; i < res.length; i++) {
+            if (res[i].main) { messagesMain.push(res[i]) }
+              else { messages.push(res[i]) }
+          }
+          // console.log({ messagesMain, messages })
+          this.$store.dispatch('setMessage', messages)
+          this.$store.dispatch('setMessageMain', messagesMain)
         })
         .catch(error => {
           console.log(error);
