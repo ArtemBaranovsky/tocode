@@ -5,6 +5,8 @@
         <td> <span>{{ message.title }}</span> </td>
       </tr>
     </transition-group>
+
+    <button @click="loadMore" class="btn btnPrimary">Load more</button>
   </table>
 </template>
 
@@ -14,11 +16,14 @@ export default {
     messages: {
       type: Array,
       required: true
-    },
-    // loading: {
-    //   type: Boolean,
-    //   required: true
-    // }
+    }
+  },
+  methods: {
+    loadMore() {
+      // logic
+      this.$store.dispatch('loadMessages')
+        .catch(err => { console.log(err) })
+    }
   }
 }
 </script>
