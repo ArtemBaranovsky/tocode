@@ -16,10 +16,15 @@
           <!-- preloader -->
           <preloader v-if="loading" :width="90" :height="90"/>
 
+          <!-- error -->
+          <div class="error" v-if="error">
+            <p>{{ error }}</p>
+          </div>
+
           <!-- notify -->
           <div class="notify__content">
             <notify
-              v-if="!loading"
+              v-if="!loading && !error"
               :messages="messages"/>
           </div>
 
@@ -38,7 +43,8 @@ export default {
   components: { notify, preloader },
   data () {
     return {
-      loading: false
+      loading: false,
+      error: null
     }
   },
   mounted() {
@@ -78,6 +84,7 @@ export default {
         })
         .catch(error => {
           console.log(error);
+          this.error = 'Error: Network error'
         })
         .finally( () =>  { this.loading = false })
     }
