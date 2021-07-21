@@ -35,58 +35,28 @@
 </template>
 
 <script>
-import axios from 'axios'
 import notify from '@/components/Notify.vue'
 // UI
 import preloader from '@/components/UI/Preloader.vue'
 export default {
   components: { notify, preloader },
-  data () {
-    return {
-      loading: false,
-      error: null
-    }
-  },
   mounted() {
-    this.getNotify()
+    this.setNotify()
   },
   computed: {
+    loading () { return this.$store.getters.getLoading },
+    error () { return this.$store.getters.getError },
     messages () {
       return this.$store.getters.getMessageMain
+    },
+    getNotifyLazy () {
+      this.$store.getters.setNotifyLazy
+      return this.$store.getters.getMessage
     }
   },
   methods: {
-    getNotifyLazy() {
-      this.loading = true
-      setTimeout(() => {
-        this.getNotify()
-      }, 2000)
-    },
-    getNotify() {
-    this.loading = true
-      axios
-        // .get("https://tocode.ru/static/c/vue-pro/notifyApi.php")
-        .get("https://tocode.ru/static/_secret/courses/1/notifyApi.php")
-        .then(response => {
-          // this.messages = response.data.notify
-          let res = response.data.notify,
-              messages = [],
-              messagesMain = [];
-
-          // filter
-          for (let i = 0; i < res.length; i++) {
-            if (res[i].main) { messagesMain.push(res[i]) }
-              else { messages.push(res[i]) }
-          }
-          // console.log({ messagesMain, messages })
-          this.$store.dispatch('setMessage', messages)
-          this.$store.dispatch('setMessageMain', messagesMain)
-        })
-        .catch(error => {
-          console.log(error);
-          this.error = 'Error: Network error'
-        })
-        .finally( () =>  { this.loading = false })
+    setNotify() {
+      this.$store.dispatch('setNotify')
     }
   }
 }
