@@ -10,6 +10,18 @@
         @search="search = $event"/>
 
         <button class="btn btnPrimary" @click="getRepos">Search!</button>
+
+        <!-- wrapper-->
+        <div class="repos__wrapper" v-if="repos">
+
+          <!-- item-->
+          <div class="repo-item" v-for="repo in repos" :key="repo.id">
+            <div class="repo-info">
+              <a class="link" target="_blank" :href="repo.html_url">{{ repo.name }}</a>
+              <span> {{ repo.stargazers_count }}⭐</span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </div>
@@ -23,17 +35,19 @@ export default {
   components: { search },
   data () {
     return {
-      search: ''
+      search: '',
+      repos: null
     }
   },
   methods: {
     getRepos () {
       axios.get(`https://api.github.com/users/${this.search}/repos`)
       .then(res => {
-        console.log(res);
+        // console.log(res)
+        this.repos = res.data
       })
       .catch(err => {
-        console.log(err);
+        console.log(err)
       })
 
       // console.log(`get user ${this.search} repos`)
@@ -51,5 +65,23 @@ export default {
 
 button {
   margin-top: 40px;
+}
+
+.repos__wrapper {
+  width: 400px;
+  margin: 30px 0;
+}
+
+.repo-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid #dbdbdb;
+}
+
+.repo-item {
+
 }
 </style>
