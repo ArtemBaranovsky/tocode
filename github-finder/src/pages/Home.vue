@@ -3,13 +3,19 @@
     <section>
       <div class="container">
 
+        <!-- errors        -->
+        <div class="error" v-if="error" style="margin-bottom: 15px;">
+          <p>{{ error }}</p>
+        </div>
+
         <!-- search -->
         <search
         :value="search"
         placeholder="Type username..."
         @search="search = $event"/>
 
-        <button class="btn btnPrimary" @click="getRepos">Search!</button>
+        <button v-if="!repos" class="btn btnPrimary" @click="getRepos">Search!</button>
+        <button v-else class="btn btnPrimary" @click="getRepos">Search again!</button>
 
         <!-- wrapper-->
         <div class="repos__wrapper" v-if="repos">
@@ -36,7 +42,8 @@ export default {
   data () {
     return {
       search: '',
-      repos: null
+      repos: null,
+      error: null
     }
   },
   methods: {
@@ -44,10 +51,13 @@ export default {
       axios.get(`https://api.github.com/users/${this.search}/repos`)
       .then(res => {
         // console.log(res)
+        this.error = null
         this.repos = res.data
       })
       .catch(err => {
         console.log(err)
+        this.repos = null
+        this.error = `Can't find this user`
       })
 
       // console.log(`get user ${this.search} repos`)
