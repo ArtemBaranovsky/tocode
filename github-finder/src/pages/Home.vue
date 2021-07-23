@@ -17,6 +17,7 @@
 
 <script>
 import search from '@/components/Search.vue'
+import axios from 'axios'
 
 export default {
   components: { search },
@@ -27,7 +28,15 @@ export default {
   },
   methods: {
     getRepos () {
-      console.log(`get user ${this.search} repos`)
+      axios.get(`https://api.github.com/users/${this.search}/repos`)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+
+      // console.log(`get user ${this.search} repos`)
     }
   }
 }
