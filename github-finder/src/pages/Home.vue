@@ -8,14 +8,21 @@
           <p>{{ error }}</p>
         </div>
 
+        <!--user-->
+        <div class="user">
+          <p v-if="name">{{ name }}</p>
+          <img v-if="avatar" :src="avatar"/>
+          <p v-if="repos">Number of repositories: {{ repos.length }}</p>
+        </div>
+
         <!-- search -->
         <search
         :value="search"
         placeholder="Type username..."
         @search="search = $event"/>
 
-        <button v-if="!repos" class="btn btnPrimary" @click="getRepos">Search!</button>
-        <button v-else class="btn btnPrimary" @click="getRepos">Search again!</button>
+        <button v-if="!repos" class="btn btnPrimary" @click="getUserdata">Search!</button>
+        <button v-else class="btn btnPrimary" @click="getUserdata">Search again!</button>
 
         <!-- wrapper-->
         <div class="repos__wrapper" v-if="repos">
@@ -43,10 +50,20 @@ export default {
     return {
       search: '',
       repos: null,
+      name: null,
+      avatar: null,
+      // TODO: add and display also name, avatar, number of repos
+      // TODO: add repos and stars sorting
+      // TODO: add pagination or loadmore for repos and stars
       error: null
     }
   },
   methods: {
+    getUserdata() {
+      this.getRepos()
+      this.getAvatar()
+      this.getName()
+    },
     getRepos () {
       axios.get(`https://api.github.com/users/${this.search}/repos`)
       .then(res => {
@@ -61,6 +78,26 @@ export default {
       })
 
       // console.log(`get user ${this.search} repos`)
+    },
+    getAvatar () {
+      axios.get(`https://api.github.com/users/${this.search}`)
+      .then(res => {
+        this.avatar = res.data.avatar_url
+      })
+      .catch(err => {
+        console.log(err)
+        this.avatar = null
+      })
+    },
+    getName () {
+      axios.get(`https://api.github.com/users/${this.search}`)
+      .then(res => {
+        this.name = res.data.name
+      })
+      .catch(err => {
+        console.log(err)
+        this.name = null
+      })
     }
   }
 }
