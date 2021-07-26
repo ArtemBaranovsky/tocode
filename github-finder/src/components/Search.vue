@@ -30,7 +30,7 @@
         },
       },
       data() {
-	  	return { search: this.value }
+	  	  return { search: this.value }
       },
       watch: {
 	  	search (value) {
