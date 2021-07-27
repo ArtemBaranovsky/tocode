@@ -66,7 +66,7 @@ export default {
         //  отправка данных через GET не очень удобна (если много полей) и не безопасна!!!
         // .get(`https://site.com/api/read.php?name=${this.name}&email=${this.email}`)
         // .get(`https://github.com/ArtemBaranovsky/tocode/tree/master/modals-2/mail.php?name=${this.name}&email=${this.email}`)
-        .post('https://github.com/ArtemBaranovsky/tocode/tree/master/modals-2/mail.php', {
+        .post('https://raw.githubusercontent.com/ArtemBaranovsky/tocode/master/modal-2/mail.php', {
           name: this.modalSecond.name,
           email: this.modalSecond.email
         })
