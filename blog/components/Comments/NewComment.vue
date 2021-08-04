@@ -3,12 +3,12 @@
     <div class="container">
 <!--      <h2 class="title">New Comment!</h2>-->
 
-      <message v-if="message" :message="message" />
+      <Message v-if="message" :message="message" />
 
       <form @submit.prevent="onSubmit" class="contact-form" action="">
 
-        <app-input v-model="comment.name"> Name: </app-input>
-        <app-text-area v-model="comment.text" > Text: </app-text-area>
+        <App-input v-model="comment.name"> Name: </App-input>
+        <App-text-area v-model="comment.text" > Text: </App-text-area>
 
         <!-- buttons -->
         <div class="controls">
@@ -21,14 +21,8 @@
 </template>
 
 <script>
-import AppButton from '@/components/UI/Controls/Button.vue'
-import AppInput from '@/components/UI/Controls/Input.vue'
-import AppTextArea from '@/components/UI/Controls/TextArea.vue'
-import message from '@/components/UI/Message.vue'
-
 export default {
   name: "NewComment",
-  components: { AppButton, AppInput, AppTextArea, message },
   data () {
     return {
       message: null,

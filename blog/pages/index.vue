@@ -1,9 +1,9 @@
 <template>
   <div class="wrapper-content wrapper-content--fixed">
     <promo />
-    <intro title="My last posts:" />
+    <Intro title="My last posts:" />
 <!--    posts-->
-    <posts-list :posts="posts" />
+    <Posts-list :posts="posts" />
     <contacts />
   </div>
 </template>
@@ -11,11 +11,9 @@
 <script>
 import promo from '@/components/Promo.vue'
 import contacts from '@/components/Contacts.vue'
-import intro from '@/components/UI/Intro.vue'
-import postsList from '@/components/Blog/PostsList.vue'
 
 export default {
-  components: { promo, intro, postsList, contacts },
+  components: { promo, contacts },
   data () {
     return {
       posts: [
