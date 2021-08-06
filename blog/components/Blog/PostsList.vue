@@ -6,6 +6,7 @@
          v-for="post in posts"
          :key="post.id"
          :post="post"
+         :admin="admin"
         />
       </div>
     </div>
@@ -22,6 +23,10 @@ export default {
     posts: {
       type: Array,
       required: true
+    },
+    admin: {
+      type: Boolean,
+      default: false
     }
   }
 }
