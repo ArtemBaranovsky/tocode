@@ -51,6 +51,7 @@ export default {
               }
             ]
           })
+          // reject(new Error())
         })
     })
       .then(data => {
@@ -59,7 +60,6 @@ export default {
       .catch(e => {
         context.error(e)
       })
-    // reject(new Error())
   },
   created () {
     // axios('')
