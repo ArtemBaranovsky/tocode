@@ -11,6 +11,9 @@ export const state = () => ({
 })
 
 export const mutations = {
+  setPosts(state, posts) {
+    state.postsLoaded = posts
+  },
   addPost(state, post) {
     console.log(post);
     state.postsLoaded.push(post)
@@ -19,6 +22,17 @@ export const mutations = {
 }
 
 export const actions = {
+  nuxtServerInit ({commit}, context) {
+    return axios.get('https://blog-nuxt-f5235-default-rtdb.europe-west1.firebasedatabase.app/posts.json')
+      .then(res => {
+        // console.log(res);
+        const postsArray = []
+        for (let key in res.data) {
+          postsArray.push({ ...res.data[key], id: key })
+        }
+        commit('setPosts' , postsArray)
+      })
+      .catch(e=> console.log(e))  },
   addPost ({commit}, post) {
     // console.log(post);
     // register and create Realtime Database at firebase.google.com
@@ -32,5 +46,7 @@ export const actions = {
 }
 
 export const getters = {
-
+  getPostsLoaded (state) {
+    return state.postsLoaded
+  }
 }
