@@ -18,6 +18,10 @@ export const mutations = {
     console.log(post);
     state.postsLoaded.push(post)
     // return Promise.resolve(undefined);
+  },
+  editPost(state, postEdit) {
+    const postIndex = state.postsLoaded.findIndex(post => post.id === postEdit.id)
+    state.postsLoaded[postIndex] = postEdit
   }
 }
 
@@ -42,6 +46,13 @@ export const actions = {
         commit('addPost', { ...post, id: res.data.name })
       })
       .catch(e=> console.log(e))
+  },
+  editPost ({commit}, post) {
+    return axios.put(`https://blog-nuxt-f5235-default-rtdb.europe-west1.firebasedatabase.app/posts/${post.id}.json`, post)
+      .then(res => {
+        commit('editPost', post)
+      })
+      .catch(e => console.log(e))
   }
 }
 
