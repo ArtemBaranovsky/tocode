@@ -19,6 +19,7 @@
 import Header from '~/components/system/Header.vue'
 export default {
   name: "admin",
-  components: { Header }
+  components: { Header },
+  middleware: 'auth'
 }
 </script>
