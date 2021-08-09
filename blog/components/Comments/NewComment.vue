@@ -34,11 +34,19 @@ export default {
   },
   methods: {
     onSubmit () {
-      console.log(this.comment)
-      this.message = 'Submited!'
-      // reset
-      this.comment.name = ''
-      this.comment.text = ''
+      this.$store.dispatch('addComment', {
+        postId: '',
+        publish: false,
+        ...this.comment
+      })
+        .then(()=>{
+          // console.log(this.comment)
+          this.message = 'Submited!'
+          // reset
+          this.comment.name = ''
+          this.comment.text = ''
+        })
+        .catch(e => { console.log(e) })
     }
   }
 }

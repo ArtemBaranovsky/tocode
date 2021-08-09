@@ -7,21 +7,26 @@ import axios from "axios";
 // }
 
 export const state = () => ({
-  postsLoaded: []
+  postsLoaded: [],
+  commentsLoaded: []
 })
 
 export const mutations = {
-  setPosts(state, posts) {
+  setPosts (state, posts) {
     state.postsLoaded = posts
   },
-  addPost(state, post) {
+  addPost (state, post) {
     console.log(post);
     state.postsLoaded.push(post)
     // return Promise.resolve(undefined);
   },
-  editPost(state, postEdit) {
+  editPost (state, postEdit) {
     const postIndex = state.postsLoaded.findIndex(post => post.id === postEdit.id)
     state.postsLoaded[postIndex] = postEdit
+  },
+  addComment (state, comment) {
+    console.log(comment);
+    state.commentsLoaded.push(comment)
   }
 }
 
@@ -53,6 +58,13 @@ export const actions = {
         commit('editPost', post)
       })
       .catch(e => console.log(e))
+  },
+  addComment ({commit}, comment) {
+    return axios.post('https://blog-nuxt-f5235-default-rtdb.europe-west1.firebasedatabase.app/comments.json', comment)
+      .then(res => {
+        commit('addComment', { ...comment, id: res.data.name })
+      })
+      .catch(e=> console.log(e))
   }
 }
 
