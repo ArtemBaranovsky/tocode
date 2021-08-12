@@ -12,29 +12,6 @@ export const state = () => ({
   // commentsLoaded: []
 })
 
-export const mutations = {
-  setPosts (state, posts) {
-    state.postsLoaded = posts
-  },
-  addPost (state, post) {
-    console.log(post);
-    state.postsLoaded.push(post)
-    // return Promise.resolve(undefined);
-  },
-  editPost (state, postEdit) {
-    const postIndex = state.postsLoaded.findIndex(post => post.id === postEdit.id)
-    state.postsLoaded[postIndex] = postEdit
-  },
-  // addComment (state, comment) {
-  //   console.log(comment);
-  //   state.commentsLoaded.push(comment)
-  // },
-  setToken(state, token) {
-    // console.log(token);
-    state.token = token
-  }
-}
-
 export const actions = {
   nuxtServerInit ({commit}, context) {
     return axios.get('https://blog-nuxt-f5235-default-rtdb.europe-west1.firebasedatabase.app/posts.json')
@@ -59,6 +36,9 @@ export const actions = {
         .then((res) => { commit('setToken', res.data.idToken) }) // just added
       .catch(e => console.log(e))
   },
+  logoutUser ({commit}) {
+    commit('destroyToken')
+  },
   addPost ({commit}, post) {
     // console.log(post);
     // register and create Realtime Database at firebase.google.com
@@ -82,6 +62,32 @@ export const actions = {
       //   commit('addComment', { ...comment, id: res.data.name })
       // })
       .catch(e=> console.log(e))
+  }
+}
+
+export const mutations = {
+  setPosts (state, posts) {
+    state.postsLoaded = posts
+  },
+  addPost (state, post) {
+    console.log(post);
+    state.postsLoaded.push(post)
+    // return Promise.resolve(undefined);
+  },
+  editPost (state, postEdit) {
+    const postIndex = state.postsLoaded.findIndex(post => post.id === postEdit.id)
+    state.postsLoaded[postIndex] = postEdit
+  },
+  // addComment (state, comment) {
+  //   console.log(comment);
+  //   state.commentsLoaded.push(comment)
+  // },
+  setToken (state, token) {
+    // console.log(token);
+    state.token = token
+  },
+  destroyToken (state) {
+    state.token = null
   }
 }
 
