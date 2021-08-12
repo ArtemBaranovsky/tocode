@@ -41,7 +41,18 @@ export const actions = {
         }
         commit('setPosts' , postsArray)
       })
-      .catch(e=> console.log(e))  },
+      .catch(e=> console.log(e))
+  },
+  authUser ({commit}, authData) {
+    const key = 'AIzaSyAjyLswtf7G70Hgv0cT4Ykw1lAFT5lvCbs'
+    return axios.post(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${key}`, {
+      email: authData.email,
+      password: authData.password,
+      returnSecureToken: true
+    })
+      .then((res) => { commit('setToken', res.data.idToken) })
+      .catch(e => console.log(e))
+  },
   addPost ({commit}, post) {
     // console.log(post);
     // register and create Realtime Database at firebase.google.com
