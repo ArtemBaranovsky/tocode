@@ -45,7 +45,8 @@ export const actions = {
   },
   authUser ({commit}, authData) {
     const key = 'AIzaSyAjyLswtf7G70Hgv0cT4Ykw1lAFT5lvCbs'
-    return axios.post(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${key}`, {
+    // return axios.post(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${key}`, { // user signup
+    return axios.post(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${key}`, {
       email: authData.email,
       password: authData.password,
       returnSecureToken: true
