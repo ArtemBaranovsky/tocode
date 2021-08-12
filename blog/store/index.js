@@ -8,7 +8,8 @@ import axios from "axios";
 
 export const state = () => ({
   postsLoaded: [],
-  commentsLoaded: []
+  token: null,
+  // commentsLoaded: []
 })
 
 export const mutations = {
@@ -24,9 +25,13 @@ export const mutations = {
     const postIndex = state.postsLoaded.findIndex(post => post.id === postEdit.id)
     state.postsLoaded[postIndex] = postEdit
   },
-  addComment (state, comment) {
-    console.log(comment);
-    state.commentsLoaded.push(comment)
+  // addComment (state, comment) {
+  //   console.log(comment);
+  //   state.commentsLoaded.push(comment)
+  // },
+  setToken(state, token) {
+    // console.log(token);
+    state.token = token
   }
 }
 
@@ -51,7 +56,7 @@ export const actions = {
       password: authData.password,
       returnSecureToken: true
     })
-      .then((res) => { commit('setToken', res.data.idToken) })
+        .then((res) => { commit('setToken', res.data.idToken) }) // just added
       .catch(e => console.log(e))
   },
   addPost ({commit}, post) {
@@ -64,8 +69,8 @@ export const actions = {
       })
       .catch(e=> console.log(e))
   },
-  editPost ({commit}, post) {
-    return axios.put(`https://blog-nuxt-f5235-default-rtdb.europe-west1.firebasedatabase.app/posts/${post.id}.json`, post)
+  editPost ({commit, state}, post) {
+    return axios.put(`https://blog-nuxt-f5235-default-rtdb.europe-west1.firebasedatabase.app/posts/${post.id}.json?auth=${state.token}`, post)
       .then(res => {
         commit('editPost', post)
       })
@@ -73,9 +78,9 @@ export const actions = {
   },
   addComment ({commit}, comment) {
     return axios.post('https://blog-nuxt-f5235-default-rtdb.europe-west1.firebasedatabase.app/comments.json', comment)
-      .then(res => {
-        commit('addComment', { ...comment, id: res.data.name })
-      })
+      // .then(res => {
+      //   commit('addComment', { ...comment, id: res.data.name })
+      // })
       .catch(e=> console.log(e))
   }
 }
@@ -83,5 +88,8 @@ export const actions = {
 export const getters = {
   getPostsLoaded (state) {
     return state.postsLoaded
+  },
+  checkAuthUser (state) {
+    return state.token != null
   }
 }

@@ -28,11 +28,13 @@ export default {
     onSubmit () {
       this.$store.dispatch('authUser', this.user)
         .then((res) => {
-          console.log(res)
+          // console.log(res)
+          this.$router.push('/admin')
           // Reset
-          this.user.email = ''
-          this.user.password = ''
+          // this.user.email = ''
+          // this.user.password = ''
         })
+      .catch(e => console.log(e))
     }
   }
 }
