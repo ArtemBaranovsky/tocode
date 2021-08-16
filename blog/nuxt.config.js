@@ -1,7 +1,8 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: pkg.name,
+    // title: pkg.name,
+    title: 'My SSR Blog',
     htmlAttrs: {
       lang: 'en'
     },
@@ -38,6 +39,15 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+      // ['@nuxtjs/google-analytics', {
+      //   id: 'UA-key'
+      // }],
+      // ['@nuxtjs/yandex-metrika', {
+      //   id: 'key',
+      //   webvisor: false,
+      //   clickmap: true,
+      //   trackLinks: true
+      // }]
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
