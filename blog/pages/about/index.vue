@@ -17,18 +17,25 @@
 </template>
 
 <script>
-export default {
-
-}
-</script>
-
-
-<script>
 import intro from '@/components/UI/Intro'
 export default {
   name: "index",
-  components : { intro }
+  components : { intro },
+  head () {
+    let title = 'About My SSR Blog!',
+      descr = 'About My SSR Blog! With Nuxt.js!',
+      type = 'site'
 
+    return {
+      title: title,
+      meta: [
+        { hid: 'og:title', name: 'og:title', content: title },
+        { hid: 'description', name: 'description', content: descr },
+        { hid: 'og:description', name: 'og:description', content: descr },
+        { hid: 'og:type', name: 'og:type', content: type }
+      ]
+    }
+  }
 }
 </script>
 
