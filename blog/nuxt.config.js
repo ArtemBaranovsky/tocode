@@ -9,6 +9,8 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       // { hid: 'description', name: 'description', content: '' },
+      { name: 'yandex-verification', content: 'bb3c48655843122' },  // add real key
+      { name: 'google-site-verification', content: 'jas9128428428-2409-218' },  // add real key
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
