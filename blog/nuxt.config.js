@@ -2,6 +2,9 @@ import axios from "axios"
 import pkg from './package'
 
 export default {
+  // mode: 'universal',  // SEO + Server Rendering; OR set 'spa' and npm run dev
+  mode: 'spa',
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     // title: pkg.name,

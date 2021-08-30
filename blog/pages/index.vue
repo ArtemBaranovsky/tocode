@@ -29,6 +29,9 @@ export default {
       ]
     }
   },
+  created() {
+    this.$store.dispatch('nuxtServerInit')
+  },
   computed: {
     postsLoaded () {
       return this.$store.getters.getPostsLoaded
